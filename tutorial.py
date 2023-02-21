@@ -1,5 +1,5 @@
 from typing import Dict, List
-from datamodel import OrderDepth, TradingState, Order
+from marketmaker.datamodel import OrderDepth, TradingState, Order
 import pandas as pd
 class Trader:
 
