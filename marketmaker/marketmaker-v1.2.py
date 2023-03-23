@@ -1,20 +1,35 @@
 from typing import Dict, List
-from datamodel import OrderDepth, TradingState, Order
 import pandas as pd
+
+import json
+from datamodel import *
+from typing import Any
+
+class Logger:
+    def __init__(self) -> None:
+        self.logs = ""
+
+    def print(self, *objects: Any, sep: str = " ", end: str = "\n") -> None:
+        self.logs += sep.join(map(str, objects)) + end
+
+    def flush(self, state: TradingState, orders: dict[Symbol, list[Order]]) -> None:
+        print(json.dumps({
+            "state": state,
+            "orders": orders,
+            "logs": self.logs,
+        }, cls=ProsperityEncoder, separators=(",", ":"), sort_keys=True))
+
+        self.logs = ""
+
+logger = Logger()
+
 class Trader:
     increasingB = True
     increasingP = True
     lastB = 0
     lastP = 0
+    def run(self, state: TradingState) -> dict[Symbol, list[Order]]:
 
-
-
-    def run(self, state: TradingState) -> Dict[str, List[Order]]:
-        """
-        Only method required. It takes all buy and sell orders for all symbols as an input,
-        and outputs a list of orders to be sent
-        """
-        # Initialize the method output dict as an empty dict
         result = {}
 
         # Iterate over all the keys (the available products) contained in the order depths
@@ -78,7 +93,7 @@ class Trader:
             self.lastP = max(self.lastP, best_bidP)
             result["PEARLS"] = orders
             self.increasingP = True
-        print(result)
-        print(state.position)
-
+        logger.print(result)
+        logger.print(state.position)
+        logger.flush(state, result)
         return result

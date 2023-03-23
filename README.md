@@ -43,3 +43,15 @@ Mean reversion for only pearls, best algorithm so far with a 1.48k profit.
 ### v1.5
 
 Mean reversion for pearls + bananas, best algorithm so far with a 1.48k profit.
+
+## Blend
+
+### v1
+
+Blend of mean reversion and SMA, but need to make sure positions are fully closed and fully utilised.
+
+## Arbitrage
+
+### v1
+
+Simple pairs trading strategy with predefined ratios and trading triggers, achieves a 12k profit. Will need to switch to correlation coefficient.
