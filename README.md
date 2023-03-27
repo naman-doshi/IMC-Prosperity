@@ -55,3 +55,13 @@ Blend of mean reversion and SMA, but need to make sure positions are fully close
 ### v1
 
 Simple pairs trading strategy with predefined ratios and trading triggers, achieves a 12k profit. Will need to switch to correlation coefficient.
+
+## R4
+
+### v1
+
+Pairs based on the ratio
+
+### v2
+
+More profitable pairs
